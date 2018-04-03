@@ -6,7 +6,7 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle( "Selenium Grid Manager Library" )]
+[assembly: AssemblyTitle( "Selenium Grid Manager Agent" )]
 [assembly: AssemblyDescription( "" )]
 [assembly: AssemblyConfiguration( "" )]
 [assembly: AssemblyCompany( "György Balássy" )]
@@ -21,7 +21,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible( false )]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid( "01efbdf2-2f08-4767-89bd-394557def3e4" )]
+[assembly: Guid( "ac0efa43-00a3-4aac-b99a-90af3cd96d7e" )]
 
 // Version information for an assembly consists of the following four values:
 //
@@ -36,6 +36,5 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyVersion( "1.0.*" )]
 [assembly: AssemblyFileVersion( "1.0.0.0" )]
 
-[assembly: CLSCompliant( true )]
+[assembly: CLSCompliant( false )]
 [assembly: NeutralResourcesLanguage( "en-US" )]
-

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
 using System.Management;
@@ -29,12 +30,14 @@ namespace SeleniumGridManager.Lib.Services.HostProcess
 
 
 		/// <summary>
-		/// List all Selenium processes.
+		/// Lists all Selenium processes.
 		/// </summary>
+		/// <param name="commandLineSearchTerm">The term to look for in the command line.</param>
 		/// <returns>All Selenium related processes.</returns>
-		public static IEnumerable<Process> List()
+		[SuppressMessage( "Microsoft.Design", "CA1026:DefaultParametersShouldNotBeUsed", Justification = "Called only from C#." )]
+		public static IEnumerable<Process> List( string commandLineSearchTerm = "webdriver" )
 		{
-			return FindProcesses( "webdriver" );
+			return FindProcesses( commandLineSearchTerm );
 		}
 
 
@@ -59,17 +62,17 @@ namespace SeleniumGridManager.Lib.Services.HostProcess
 		/// <summary>
 		/// Returns the list of processes where the command line contains the specified term.
 		/// </summary>
-		/// <param name="commandLineTerm">The term to look for in the command line.</param>
+		/// <param name="commandLineSearchTerm">The term to look for in the command line.</param>
 		/// <returns>The list of matching processes.</returns>
-		/// <exception cref="ArgumentNullException">If the specified <paramref name="commandLineTerm"/> is <c>null</c> or empty.</exception>
-		private static IEnumerable<Process> FindProcesses( string commandLineTerm )
+		/// <exception cref="ArgumentNullException">If the specified <paramref name="commandLineSearchTerm"/> is <c>null</c> or empty.</exception>
+		private static IEnumerable<Process> FindProcesses( string commandLineSearchTerm )
 		{
-			if( String.IsNullOrEmpty( commandLineTerm ) )
+			if( String.IsNullOrEmpty( commandLineSearchTerm ) )
 			{
-				throw new ArgumentNullException( "commandLineTerm", "Please specify the term to look for in the command line!" );
+				throw new ArgumentNullException( "commandLineSearchTerm", "Please specify the term to look for in the command line!" );
 			}
 
-			string query = String.Format( CultureInfo.InvariantCulture, @"SELECT ProcessId FROM Win32_Process WHERE CommandLine LIKE ""%{0}%""", commandLineTerm );
+			string query = String.Format( CultureInfo.InvariantCulture, @"SELECT ProcessId FROM Win32_Process WHERE CommandLine LIKE ""%{0}%""", commandLineSearchTerm );
 			using( ManagementObjectSearcher searcher = new ManagementObjectSearcher( query ) )
 			{
 				return searcher.Get()

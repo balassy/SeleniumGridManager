@@ -458,9 +458,9 @@
       }
     },
     "aspnet-webpack": {
-      "version": "2.0.1",
-      "resolved": "https://registry.npmjs.org/aspnet-webpack/-/aspnet-webpack-2.0.1.tgz",
-      "integrity": "sha1-TZyh3BIM5+LlzdX3nCrJgDuq7/s=",
+      "version": "2.0.3",
+      "resolved": "https://registry.npmjs.org/aspnet-webpack/-/aspnet-webpack-2.0.3.tgz",
+      "integrity": "sha512-TwutLcYQlLikMJ8mcv8D9KSr5BkkFbpQDY/LABj/dMwz6EAM9azqV9WfgrQ+1UPmycS6VVgQZhITmCmTOAiYtg==",
       "dev": true,
       "requires": {
         "connect": "3.6.2",
@@ -468,7 +468,7 @@
         "memory-fs": "0.3.0",
         "require-from-string": "1.2.1",
         "webpack-dev-middleware": "1.11.0",
-        "webpack-node-externals": "1.6.0"
+        "webpack-node-externals": "1.7.2"
       }
     },
     "assert": {
@@ -721,9 +721,9 @@
       }
     },
     "bootstrap": {
-      "version": "3.3.7",
-      "resolved": "https://registry.npmjs.org/bootstrap/-/bootstrap-3.3.7.tgz",
-      "integrity": "sha1-WjiTlFSfIzMIdaOxUGVldPip63E=",
+      "version": "4.0.0",
+      "resolved": "https://registry.npmjs.org/bootstrap/-/bootstrap-4.0.0.tgz",
+      "integrity": "sha512-gulJE5dGFo6Q61V/whS6VM4WIyrlydXfCgkE+Gxe5hjrJ8rXLLZlALq7zq2RPhOc45PSwQpJkrTnc2KgD6cvmA==",
       "dev": true
     },
     "brace-expansion": {
@@ -3885,6 +3885,12 @@
         "pinkie": "2.0.4"
       }
     },
+    "popper.js": {
+      "version": "1.14.3",
+      "resolved": "https://registry.npmjs.org/popper.js/-/popper.js-1.14.3.tgz",
+      "integrity": "sha1-FDj5jQRqz3tNeM1QK/QYrGTU8JU=",
+      "dev": true
+    },
     "posix-character-classes": {
       "version": "0.1.1",
       "resolved": "https://registry.npmjs.org/posix-character-classes/-/posix-character-classes-0.1.1.tgz",
@@ -5956,9 +5962,9 @@
       }
     },
     "webpack-node-externals": {
-      "version": "1.6.0",
-      "resolved": "https://registry.npmjs.org/webpack-node-externals/-/webpack-node-externals-1.6.0.tgz",
-      "integrity": "sha1-Iyxi7GCSsQBjWj0p2DwXRxKN+b0=",
+      "version": "1.7.2",
+      "resolved": "https://registry.npmjs.org/webpack-node-externals/-/webpack-node-externals-1.7.2.tgz",
+      "integrity": "sha512-ajerHZ+BJKeCLviLUUmnyd5B4RavLF76uv3cs6KNuO8W+HuQaEs0y0L7o40NQxdPy5w0pcv8Ew7yPUAQG0UdCg==",
       "dev": true
     },
     "webpack-sources": {

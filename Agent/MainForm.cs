@@ -6,7 +6,6 @@ using System.Globalization;
 using System.Linq;
 using System.Windows.Forms;
 using SeleniumGridManager.Lib.Services.HostProcess;
-using static System.FormattableString;
 
 namespace SeleniumGridManager.Agent
 {
@@ -63,7 +62,7 @@ namespace SeleniumGridManager.Agent
 		private void btnTerminateProcess_Click( object sender, EventArgs e )
 		{
 			string processCount = this.lblProcessCount.Text;
-			string message = Invariant( $"You are about to terminate { processCount } processes with their parents and siblings!\n\nAre you sure?" );
+			string message = String.Format( CultureInfo.InvariantCulture, "You are about to terminate {0} processes with their parents and siblings!\n\nAre you sure?", processCount );
 
 			if( MessageBox.Show( message, "Terminate process", MessageBoxButtons.YesNo, MessageBoxIcon.Warning ) == DialogResult.Yes )
 			{

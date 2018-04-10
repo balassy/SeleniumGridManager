@@ -1,11 +1,5 @@
-<p *ngIf="!nodeStatuses">Loading nodes...</p>
+<p *ngIf="!nodes">Loading nodes, please wait...</p>
 
-<div *ngIf="nodeStatuses" class="card-deck">
-  <div *ngFor="let nodeStatus of nodeStatuses" class="card bg-white" [ngClass]="{'border-success': nodeStatus.agentHealthy, 'border-danger': !nodeStatus.agentHealthy}" style="width: 18rem;">
-    <div class="card-body">
-      <h5 class="card-title">{{ nodeStatus.name }}</h5>
-      <p class="card-text">
-        Agent healthy: {{ nodeStatus.agentHealthy }}
-      </p>
-    </div>
-  </div>
+<div *ngIf="nodes" class="card-deck">
+  <node-card *ngFor="let node of nodes" [nodeId]="node.id"></node-card>
+</div>

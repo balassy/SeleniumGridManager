@@ -1,4 +1,4 @@
-﻿namespace SeleniumGridManager.Web.Services
+﻿namespace SeleniumGridManager.Web.Services.Configuration
 {
   public class NodeConfiguration
   {

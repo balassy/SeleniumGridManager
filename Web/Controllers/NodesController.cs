@@ -4,9 +4,9 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
-using SeleniumGridManager.Web.Models.Agent;
 using SeleniumGridManager.Web.Models.Api;
-using SeleniumGridManager.Web.Services;
+using SeleniumGridManager.Web.Services.Agent;
+using SeleniumGridManager.Web.Services.Configuration;
 
 namespace Web.Controllers
 {
@@ -16,19 +16,22 @@ namespace Web.Controllers
   {
     private IAppConfigurationService _config;
 
-    public NodesController( IAppConfigurationService config )
+    private IAgentService _agent;
+
+    public NodesController( IAppConfigurationService config, IAgentService agent )
     {
       this._config = config;
+      this._agent = agent;
     }
 
     [HttpGet]
     public IEnumerable<Node> Get()
     {
-      return this._config.Nodes.Select(n => new Node { Id = n.Id, Name = n.Name } );
+      return this._config.Nodes.Select( n => new Node { Id = n.Id, Name = n.Name } );
     }
 
 
-    [HttpGet( "{id}")]
+    [HttpGet( "{id}" )]
     public NodeStatus Get( string id )
     {
       return new NodeStatus { Id = "2", Name = "Agent " + id, AgentHealthy = id == "1" };
@@ -36,19 +39,21 @@ namespace Web.Controllers
 
 
     [HttpGet( "{id}/screenshot" )]
-    public async Task<Screenshot> GetScreenshot( string id )
+    public async Task<ActionResult> GetScreenshot( string id )
     {
-      using( HttpClient client = new HttpClient() )
+      ScreenshotResponse screenshotResponse = await this._agent.GetScreenshot( id );
+
+      if( screenshotResponse == null )
       {
-        string uri = "http://localhost:9000/api/screenshot";
-        string response = await client.GetStringAsync( uri );
-        ScreenshotResponse screenshotResponse = JsonConvert.DeserializeObject<ScreenshotResponse>(response);
-        return new Screenshot
-        {
-          MediaType = screenshotResponse.MediaType,
-          ImageContent = screenshotResponse.ImageContent
-        };
+        return this.NotFound();
       }
+
+      Screenshot result = new Screenshot
+      {
+        MediaType = screenshotResponse.MediaType,
+        ImageContent = screenshotResponse.ImageContent
+      };
+      return this.Ok( result );
     }
 
   }

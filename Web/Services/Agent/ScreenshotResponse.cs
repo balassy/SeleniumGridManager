@@ -1,4 +1,4 @@
-﻿namespace SeleniumGridManager.Web.Models.Agent
+﻿namespace SeleniumGridManager.Web.Services.Agent
 {
   public class ScreenshotResponse
   {

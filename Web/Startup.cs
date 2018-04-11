@@ -9,7 +9,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
 using Newtonsoft.Json;
-using SeleniumGridManager.Web.Services;
+using SeleniumGridManager.Web.Services.Agent;
+using SeleniumGridManager.Web.Services.Configuration;
 
 namespace SeleniumGridManager.Web
 {
@@ -37,6 +38,7 @@ namespace SeleniumGridManager.Web
 
       // Add application specific services.
       services.AddSingleton<IAppConfigurationService, AppConfigurationService>();
+      services.AddSingleton<IAgentService, AgentService>();
     }
 
     // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

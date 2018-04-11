@@ -8,6 +8,13 @@
     <AssemblyName>SeleniumGridManager.Web</AssemblyName>
     <RootNamespace>SeleniumGridManager.Web</RootNamespace>
     <StartupObject>SeleniumGridManager.Web.Program</StartupObject>
+    <SignAssembly>true</SignAssembly>
+    <AssemblyOriginatorKeyFile>..\SeleniumGridManager.snk</AssemblyOriginatorKeyFile>
+    <Authors>György Balássy</Authors>
+    <Company>György Balássy</Company>
+    <Product>Selenium Grid Manager Web Console</Product>
+    <PackageProjectUrl>https://github.com/balassy/SeleniumGridManager</PackageProjectUrl>
+    <NeutralLanguage>en-US</NeutralLanguage>
   </PropertyGroup>
 
   <ItemGroup>

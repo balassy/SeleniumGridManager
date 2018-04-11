@@ -1,10 +1,12 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using SeleniumGridManager.Web.Models.Agent;
 using SeleniumGridManager.Web.Models.Api;
+using SeleniumGridManager.Web.Services;
 
 namespace Web.Controllers
 {
@@ -12,14 +14,17 @@ namespace Web.Controllers
   [Route( "api/nodes" )]
   public class NodesController : Controller
   {
+    private IAppConfigurationService _config;
+
+    public NodesController( IAppConfigurationService config )
+    {
+      this._config = config;
+    }
+
     [HttpGet]
     public IEnumerable<Node> Get()
     {
-      return new Node[]
-      {
-        new Node { Id = "1", Name = "Agent 1" },
-        new Node { Id = "2", Name = "Agent 2" }
-      };
+      return this._config.Nodes.Select(n => new Node { Id = n.Id, Name = n.Name } );
     }
 
 

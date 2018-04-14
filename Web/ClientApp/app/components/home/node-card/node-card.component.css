@@ -11,6 +11,10 @@
   max-width: 220px;
 }
 
+.dropdown {
+  cursor: pointer;
+}
+
 .dropdown-item .material-icons {
   vertical-align: text-bottom;
   margin-right: 10px;

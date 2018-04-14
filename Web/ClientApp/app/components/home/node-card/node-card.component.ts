@@ -28,7 +28,12 @@ export class NodeCardComponent implements OnInit {
     this._api = api;
   }
 
-  public ngOnInit() {
+  public ngOnInit(): void {
+    this._getNodeDetails();
+    this._getScreenshot();
+  }
+
+  public onRefreshClicked(): void {
     this._getNodeDetails();
     this._getScreenshot();
   }
@@ -37,7 +42,7 @@ export class NodeCardComponent implements OnInit {
     this._openScreenshotOnNewTab();
   }
 
-  private _getNodeDetails() {
+  private _getNodeDetails(): void {
     this._api.getNodeDetails(this.nodeId).subscribe((nodeDetails: NodeDetailsResponse) => {
       this.node = nodeDetails;
       this.borderSuccess = this.node.agentHealthy;
@@ -45,7 +50,7 @@ export class NodeCardComponent implements OnInit {
     });
   }
 
-  private _getScreenshot() {
+  private _getScreenshot(): void {
     this._api.getScreenshot(this.nodeId).subscribe((screenshot: ScreenshotResponse) => {
       this.imageSrc = screenshot.imageContent;
     });

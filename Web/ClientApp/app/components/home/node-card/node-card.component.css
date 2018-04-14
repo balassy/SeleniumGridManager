@@ -1,3 +1,13 @@
+.card-title {
+  margin-bottom: 0;
+  margin-right: -5px;
+}
+
 .node-card {
   max-width: 220px;
+}
+
+.dropdown-item .material-icons {
+  vertical-align: text-bottom;
+  margin-right: 10px;
 }

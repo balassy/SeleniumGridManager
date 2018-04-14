@@ -1,10 +1,17 @@
 <div *ngIf="!!node" style="max-width: 220px;">
   <img class="card-img-top" src="{{ imageSrc }}" alt="Screenshot">
   <div class="card-body">
-    <h5 class="card-title">{{ node.name }}</h5>
-    <!--
-    <p class="card-text">
-    </p>
-    -->
+    <div class="card-title">
+      {{ node.name }}
+      <div class="float-right">
+        <div class="dropdown">
+          <a id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="material-icons">arrow_drop_down</i></a>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <a class="dropdown-item" href="#"><i class="material-icons">play_arrow</i> Start process</a>
+            <a class="dropdown-item" href="#"><i class="material-icons">stop</i> Terminate process</a>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>

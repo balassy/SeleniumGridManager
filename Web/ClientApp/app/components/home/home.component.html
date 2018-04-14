@@ -1,5 +1,5 @@
 <p *ngIf="!nodes">Loading nodes, please wait...</p>
 
-<div *ngIf="nodes" class="card-deck">
+<div *ngIf="nodes" class="row justify-content-center">
   <node-card *ngFor="let node of nodes" [nodeId]="node.id"></node-card>
 </div>

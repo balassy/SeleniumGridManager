@@ -1,4 +1,4 @@
-import { Component, HostBinding, Inject, Input } from '@angular/core';
+import { Component, HostBinding, Inject, Input, OnInit } from '@angular/core';
 
 import { ApiService } from '../../../services/api/api.service';
 import { ScreenshotResponse, NodeDetailsResponse } from '../../../services/api/api.types';
@@ -6,7 +6,8 @@ import { ScreenshotResponse, NodeDetailsResponse } from '../../../services/api/a
 @Component({
   selector: 'node-card',
   templateUrl: './node-card.component.html',
-  host: { 'class': 'card bg-white' }
+  host: { 'class': 'card node-card bg-white mx-2 mb-3' },
+  styleUrls: ['./node-card.component.css']
 })
 export class NodeCardComponent implements OnInit {
   @Input()

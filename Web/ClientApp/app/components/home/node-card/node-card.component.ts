@@ -33,6 +33,10 @@ export class NodeCardComponent implements OnInit {
     this._getScreenshot();
   }
 
+  public onScreenshotClicked(): void {
+    this._openScreenshotOnNewTab();
+  }
+
   private _getNodeDetails() {
     this._api.getNodeDetails(this.nodeId).subscribe((nodeDetails: NodeDetailsResponse) => {
       this.node = nodeDetails;
@@ -45,6 +49,11 @@ export class NodeCardComponent implements OnInit {
     this._api.getScreenshot(this.nodeId).subscribe((screenshot: ScreenshotResponse) => {
       this.imageSrc = screenshot.imageContent;
     });
+  }
+
+  private _openScreenshotOnNewTab(): void {
+    const win: Window = window.open('', 'Screenshot') as Window;
+    win.document.body.innerHTML = `<html><body><img src="${this.imageSrc}" /></body></html>`;
   }
 }
 

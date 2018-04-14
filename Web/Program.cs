@@ -10,16 +10,16 @@ using Microsoft.Extensions.Logging;
 
 namespace SeleniumGridManager.Web
 {
-	public class Program
-	{
-		public static void Main( string[] args )
-		{
-			Program.BuildWebHost( args ).Run();
-		}
+  public static class Program
+  {
+    public static void Main( string[] args )
+    {
+      Program.BuildWebHost( args ).Run();
+    }
 
-		public static IWebHost BuildWebHost( string[] args ) =>
-				WebHost.CreateDefaultBuilder( args )
-						.UseStartup<Startup>()
-						.Build();
-	}
+    public static IWebHost BuildWebHost( string[] args ) =>
+        WebHost.CreateDefaultBuilder( args )
+            .UseStartup<Startup>()
+            .Build();
+  }
 }

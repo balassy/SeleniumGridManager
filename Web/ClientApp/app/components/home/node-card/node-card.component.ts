@@ -8,12 +8,15 @@ import { ScreenshotResponse, NodeDetailsResponse } from '../../../services/api/a
   templateUrl: './node-card.component.html',
   host: { 'class': 'card bg-white' }
 })
-export class NodeCardComponent {
+export class NodeCardComponent implements OnInit {
   @Input()
   public nodeId: string;
 
-  @HostBinding('class.border-success') borderSuccess: boolean;
-  @HostBinding('class.border-danger') borderDanger: boolean;
+  @HostBinding('class.border-success')
+  public borderSuccess: boolean;
+
+  @HostBinding('class.border-danger')
+  public borderDanger: boolean;
 
   public imageSrc: string;
   public node: NodeDetailsResponse;

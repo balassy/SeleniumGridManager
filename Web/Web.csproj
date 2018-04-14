@@ -15,10 +15,12 @@
     <Product>Selenium Grid Manager Web Console</Product>
     <PackageProjectUrl>https://github.com/balassy/SeleniumGridManager</PackageProjectUrl>
     <NeutralLanguage>en-US</NeutralLanguage>
+    <CodeAnalysisRuleSet>..\SeleniumGridManager.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.6" />
+    <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="2.6.0" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.0.3" />
   </ItemGroup>
 

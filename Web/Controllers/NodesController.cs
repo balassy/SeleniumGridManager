@@ -34,7 +34,15 @@ namespace Web.Controllers
     [HttpGet( "{id}" )]
     public NodeStatus Get( string id )
     {
-      return new NodeStatus { Id = "2", Name = "Agent " + id, AgentHealthy = id == "1" };
+      return this._config.Nodes
+        .Where( n => n.Id == id )
+        .Select( n => new NodeStatus
+        {
+          Id = n.Id,
+          Name = n.Name,
+          AgentHealthy = true
+        } )
+        .FirstOrDefault();
     }
 
 

@@ -31,4 +31,9 @@ export class ApiService {
     const url: string = `${this._baseUrl}api/nodes/${nodeId}/screenshot`;
     return this._http.get(url).map((res: Response) => res.json());
   }
+
+  public terminateProcesses(nodeId: string): Observable<Response> {
+    const url: string = `${this._baseUrl}api/nodes/${nodeId}/processes`;
+    return this._http.delete(url);
+  }
 }

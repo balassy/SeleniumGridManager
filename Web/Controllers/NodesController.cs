@@ -1,9 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
-using System.Net.Http;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Newtonsoft.Json;
 using SeleniumGridManager.Web.Models.Api;
 using SeleniumGridManager.Web.Services.Agent;
 using SeleniumGridManager.Web.Services.Configuration;
@@ -64,5 +63,24 @@ namespace Web.Controllers
       return this.Ok( result );
     }
 
+
+    [HttpDelete( "{id}/processes" )]
+    public async Task<ActionResult> TerminateProcesses( string id )
+    {
+      if( String.IsNullOrEmpty( id ) )
+      {
+        return this.BadRequest();
+      }
+
+      try
+      {
+        await this._agent.TerminateProcess( id );
+        return this.NoContent();
+      }
+      catch( ArgumentOutOfRangeException )
+      {
+        return this.NotFound();
+      }
+    }
   }
 }

@@ -27,7 +27,30 @@ namespace SeleniumGridManager.Web.Services.Agent
     }
 
 
-    private async Task<T> GetAs<T>(string nodeId, string relativePath)
+    public async Task TerminateProcess( string nodeId )
+    {
+      if( String.IsNullOrEmpty( nodeId ) )
+      {
+        throw new ArgumentNullException( nameof( nodeId ), "Please specify the ID of the node!" );
+      }
+
+      NodeConfiguration nodeConfig = this._config.GetNodeConfiguration( nodeId );
+      if( nodeConfig == null )
+      {
+        throw new ArgumentOutOfRangeException( nameof( nodeId ), "The specified node does not exist!" );
+      }
+
+      using( HttpClient client = new HttpClient() )
+      {
+        Uri baseUri = new Uri( nodeConfig.Endpoint );
+        const string relativePath = "/api/processes";
+        Uri endpointUri = new Uri( baseUri, relativePath );
+        await client.DeleteAsync( endpointUri );
+      }
+    }
+
+
+    private async Task<T> GetAs<T>( string nodeId, string relativePath )
     {
       if( String.IsNullOrEmpty( nodeId ) )
       {
@@ -42,7 +65,7 @@ namespace SeleniumGridManager.Web.Services.Agent
       NodeConfiguration nodeConfig = this._config.GetNodeConfiguration( nodeId );
       if( nodeConfig == null )
       {
-        return default(T);
+        throw new ArgumentOutOfRangeException( nameof( nodeId ), "The specified node does not exist!" );
       }
 
       using( HttpClient client = new HttpClient() )

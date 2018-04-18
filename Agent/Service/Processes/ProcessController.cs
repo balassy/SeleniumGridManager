@@ -24,7 +24,19 @@ namespace SeleniumGridManager.Agent.Service.Processes
 			} );
 		}
 
-		[AcceptVerbs( "DELETE" )]
+
+    [AcceptVerbs( "POST" )]
+    [Route( "" )]
+    public void Start()
+    {
+      string filePath = Properties.Settings.Default.StartProcessCommandFilePath;
+      string arguments = Properties.Settings.Default.StartProcessCommandArguments;
+
+      ProcessManager.Start( filePath, arguments );
+    }
+
+
+    [AcceptVerbs( "DELETE" )]
 		[Route( "" )]
 		public void Kill()
 		{

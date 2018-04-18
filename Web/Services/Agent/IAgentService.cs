@@ -7,5 +7,7 @@ namespace SeleniumGridManager.Web.Services.Agent
     Task<ScreenshotResponse> GetScreenshot( string nodeId );
 
     Task TerminateProcess( string nodeId );
+
+    Task StartProcess( string nodeId );
   }
 }

@@ -5,5 +5,11 @@
     <Setting Name="ProcessCommandLineSearchTerm" Type="System.String" Scope="Application">
       <Value Profile="(Default)">webdriver</Value>
     </Setting>
+    <Setting Name="StartProcessCommandFilePath" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">cmd</Value>
+    </Setting>
+    <Setting Name="StartProcessCommandArguments" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">/k ping -t example.com</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

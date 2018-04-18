@@ -82,5 +82,25 @@ namespace Web.Controllers
         return this.NotFound();
       }
     }
+
+
+    [HttpPost( "{nodeId}/processes" )]
+    public async Task<ActionResult> StartProcess( string nodeId )
+    {
+      if( String.IsNullOrEmpty( nodeId ) )
+      {
+        return this.BadRequest();
+      }
+
+      try
+      {
+        await this._agent.StartProcess( nodeId );
+        return this.NoContent();
+      }
+      catch( ArgumentOutOfRangeException )
+      {
+        return this.NotFound();
+      }
+    }
   }
 }

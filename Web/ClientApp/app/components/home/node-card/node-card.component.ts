@@ -42,6 +42,10 @@ export class NodeCardComponent implements OnInit {
     this._openScreenshotOnNewTab();
   }
 
+  public onStartProcessClicked(): void {
+    this._startProcess();
+  }
+
   public onTerminateProcessClicked(): void {
     this._terminateProcess();
   }
@@ -67,6 +71,12 @@ export class NodeCardComponent implements OnInit {
 
   private _terminateProcess(): void {
     this._api.terminateProcesses(this.nodeId).subscribe(() => {
+      this._getScreenshot();
+    });
+  }
+
+  private _startProcess(): void {
+    this._api.startProcess(this.nodeId).subscribe(() => {
       this._getScreenshot();
     });
   }

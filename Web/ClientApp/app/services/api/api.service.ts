@@ -36,4 +36,9 @@ export class ApiService {
     const url: string = `${this._baseUrl}api/nodes/${nodeId}/processes`;
     return this._http.delete(url);
   }
+
+  public startProcess(nodeId: string): Observable<Response> {
+    const url: string = `${this._baseUrl}api/nodes/${nodeId}/processes`;
+    return this._http.post(url, null);
+  }
 }

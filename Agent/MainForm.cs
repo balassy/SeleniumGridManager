@@ -24,6 +24,8 @@ namespace SeleniumGridManager.Agent
 		/// <param name="e">Event arguments.</param>
 		private void MainForm_Load( object sender, EventArgs e )
 		{
+      this.txtStartProcessFilePath.Text = Properties.Settings.Default.StartProcessCommandFilePath;
+      this.txtStartProcessArguments.Text = Properties.Settings.Default.StartProcessCommandArguments;
 			this.txtProcessSearchTerm.Text = Properties.Settings.Default.ProcessCommandLineSearchTerm;
 			this.txtProcessSearchTerm.Focus();
 
@@ -52,7 +54,13 @@ namespace SeleniumGridManager.Agent
 		}
 
 
-		private void btnSearchProcesses_Click( object sender, EventArgs e )
+    private void btnStartProcess_Click( object sender, EventArgs e )
+    {
+      this.StartProcess();
+    }
+
+
+    private void btnSearchProcesses_Click( object sender, EventArgs e )
 		{
 			this.SearchProcesses();
 		}
@@ -83,5 +91,13 @@ namespace SeleniumGridManager.Agent
 			List<Process> processes = ProcessManager.List( commandLineSearchTerm ).ToList();
 			this.lblProcessCount.Text = processes.Count.ToString( CultureInfo.InvariantCulture );
 		}
-	}
+
+
+    private void StartProcess()
+    {
+      string filePath = this.txtStartProcessFilePath.Text;
+      string arguments = this.txtStartProcessArguments.Text;
+      ProcessManager.Start( filePath, arguments );
+    }
+  }
 }

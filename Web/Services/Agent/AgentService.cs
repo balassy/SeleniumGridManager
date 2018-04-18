@@ -50,6 +50,28 @@ namespace SeleniumGridManager.Web.Services.Agent
     }
 
 
+    public async Task StartProcess( string nodeId )
+    {
+      if( String.IsNullOrEmpty( nodeId ) )
+      {
+        throw new ArgumentNullException( nameof( nodeId ), "Please specify the ID of the node!" );
+      }
+
+      NodeConfiguration nodeConfig = this._config.GetNodeConfiguration( nodeId );
+      if( nodeConfig == null )
+      {
+        throw new ArgumentOutOfRangeException( nameof( nodeId ), "The specified node does not exist!" );
+      }
+
+      using( HttpClient client = new HttpClient() )
+      {
+        Uri baseUri = new Uri( nodeConfig.Endpoint );
+        const string relativePath = "/api/processes";
+        Uri endpointUri = new Uri( baseUri, relativePath );
+        await client.PostAsync( endpointUri, null );
+      }
+    }
+
     private async Task<T> GetAs<T>( string nodeId, string relativePath )
     {
       if( String.IsNullOrEmpty( nodeId ) )

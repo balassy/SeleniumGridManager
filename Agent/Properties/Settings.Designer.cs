@@ -31,5 +31,23 @@ namespace SeleniumGridManager.Agent.Properties {
                 return ((string)(this["ProcessCommandLineSearchTerm"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("cmd")]
+        public string StartProcessCommandFilePath {
+            get {
+                return ((string)(this["StartProcessCommandFilePath"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("/k ping -t example.com")]
+        public string StartProcessCommandArguments {
+            get {
+                return ((string)(this["StartProcessCommandArguments"]));
+            }
+        }
     }
 }

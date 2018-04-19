@@ -1,8 +1,10 @@
-﻿namespace SeleniumGridManager.Web.Services.Configuration
+﻿using System.Collections.ObjectModel;
+
+namespace SeleniumGridManager.Web.Services.Configuration
 {
   public interface IAppConfigurationService
   {
-    NodeConfiguration[] Nodes { get; }
+    ReadOnlyCollection<NodeConfiguration> Nodes { get; }
 
     NodeConfiguration GetNodeConfiguration( string nodeId );
   }

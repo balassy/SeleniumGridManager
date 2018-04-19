@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.ObjectModel;
 using System.Linq;
 using Microsoft.Extensions.Configuration;
 
@@ -9,11 +10,12 @@ namespace SeleniumGridManager.Web.Services.Configuration
     private IConfiguration _config;
 
 
-    public NodeConfiguration[] Nodes
+    public ReadOnlyCollection<NodeConfiguration> Nodes
     {
       get
       {
-        return this._config.GetSection( "Nodes" ).Get<NodeConfiguration[]>();
+        NodeConfiguration[] array = this._config.GetSection( "Nodes" ).Get<NodeConfiguration[]>();
+        return Array.AsReadOnly( array );
       }
     }
 

@@ -22,7 +22,8 @@
     <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.6" />
     <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="2.6.0" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.0.3" />
-  </ItemGroup>
+		<DotNetCliToolReference Include="Microsoft.DotNet.Xdt.Tools" Version="2.0.0" />
+	</ItemGroup>
 
   <ItemGroup>
     <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="2.0.3" />
@@ -34,13 +35,24 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Remove="ClientApp\app\services\api.service.ts" />
-    <None Remove="ClientApp\app\services\api\api.types.ts" />
+    <Content Remove="appsettings.Development.json" />
+    <Content Remove="appsettings.json" />
+    <Content Remove="npm-shrinkwrap.json" />
+    <Content Remove="package.json" />
+    <Content Remove="tsconfig.json" />
+    <Content Remove="web.IIS.config" />
+    <Content Remove="web.IIS.Release.config" />
+    <Content Remove="web.Release.config" />
   </ItemGroup>
 
   <ItemGroup>
-    <TypeScriptCompile Include="ClientApp\app\services\api\api.service.ts" />
-    <TypeScriptCompile Include="ClientApp\app\services\api\api.types.ts" />
+		<None Include="appsettings.Development.json" />
+		<None Include="appsettings.json" />
+		<None Include="npm-shrinkwrap.json" />
+		<None Include="package.json" />
+		<None Include="tsconfig.json" />
+		<None Include="web.IIS.config" />
+		<None Include="web.IIS.Release.config" />
   </ItemGroup>
 
   <Target Name="DebugRunWebpack" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('wwwroot\dist') ">
@@ -73,4 +85,12 @@
     </ItemGroup>
   </Target>
 
+	<Target Name="ApplyXdtConfigTransform" BeforeTargets="_TransformWebConfig">
+		<PropertyGroup>
+			<_SourceWebConfig>$(MSBuildThisFileDirectory)Web.IIS.config</_SourceWebConfig>
+			<_XdtTransform>$(MSBuildThisFileDirectory)Web.IIS.$(Configuration).config</_XdtTransform>
+			<_TargetWebConfig>$(PublishDir)Web.config</_TargetWebConfig>
+		</PropertyGroup>
+		<Exec Command="dotnet transform-xdt --xml &quot;$(_SourceWebConfig)&quot; --transform &quot;$(_XdtTransform)&quot; --output &quot;$(_TargetWebConfig)&quot;" Condition="Exists('$(_XdtTransform)')" />
+	</Target>
 </Project>
